@@ -183,6 +183,28 @@
     font-weight: 700;
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-new {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+  }
+
+  .badge-popular {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
   }
 
   .card p {
@@ -206,6 +228,9 @@
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .card:hover .btn {
@@ -329,7 +354,7 @@
       </a>
     </div>
 
-    <!-- AI TOOLS -->
+    <!-- AI TOOLS - ENHANCED -->
     <h2 class="section-title">
       <i class="fas fa-robot"></i>
       AI Tools & Assistants
@@ -339,7 +364,7 @@
         <div class="icon-wrapper">
           <i class="fas fa-comment-dots"></i>
         </div>
-        <h3>ChatGPT</h3>
+        <h3>ChatGPT <span class="badge badge-popular">Popular</span></h3>
         <p>OpenAI's conversational AI assistant</p>
         <div class="btn">Launch <i class="fas fa-rocket"></i></div>
       </a>
@@ -348,26 +373,26 @@
         <div class="icon-wrapper">
           <i class="fas fa-theater-masks"></i>
         </div>
-        <h3>Claude</h3>
+        <h3>Claude <span class="badge badge-popular">Popular</span></h3>
         <p>Anthropic's AI assistant</p>
         <div class="btn">Launch <i class="fas fa-rocket"></i></div>
       </a>
 
-      <a href="https://chat.qwen.ai/" target="_blank" class="card">
+      <a href="https://chat.z.ai/" target="_blank" class="card">
         <div class="icon-wrapper">
-          <i class="fas fa-star"></i>
+          <i class="fas fa-bolt"></i>
         </div>
-        <h3>Qwen</h3>
-        <p>Alibaba's large language model</p>
+        <h3>Z AI <span class="badge badge-new">New</span></h3>
+        <p>Advanced AI chat interface</p>
         <div class="btn">Launch <i class="fas fa-rocket"></i></div>
       </a>
 
-      <a href="https://www.deepseek.com/" target="_blank" class="card">
+      <a href="https://kimi.moonshot.cn/" target="_blank" class="card">
         <div class="icon-wrapper">
-          <i class="fas fa-water"></i>
+          <i class="fas fa-moon"></i>
         </div>
-        <h3>DeepSeek</h3>
-        <p>Advanced AI reasoning model</p>
+        <h3>Kimi <span class="badge badge-new">New</span></h3>
+        <p>Moonshot AI's intelligent assistant</p>
         <div class="btn">Launch <i class="fas fa-rocket"></i></div>
       </a>
 
@@ -504,7 +529,7 @@
     </div>
 
     <footer>
-      <strong>© 2026 KES UPDATESS • Admin Dashboard v4.0</strong>
+      <strong>© 2026 KES UPDATESS • Admin Dashboard v5.0</strong>
       <p>All links verified and working ✓ | Built with ❤️ for efficient management</p>
     </footer>
   </div>
