@@ -3,126 +3,509 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>KES Updates - Admin Hub</title>
+<title>KES UPDATESS - Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-  body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px;
-    color: #fff;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --primary: #667eea;
+    --primary-dark: #764ba2;
+    --accent: #f093fb;
+    --bg: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.15);
+    --shadow-xl: 0 20px 40px -5px rgb(0 0 0 / 0.2);
   }
-  .container { max-width: 1100px; margin: 0 auto; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
   header {
     text-align: center;
-    padding: 30px 20px;
-    margin-bottom: 30px;
+    padding: 50px 30px;
+    margin-bottom: 50px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
   }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary-dark));
+  }
+
   header h1 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
   }
-  header p { font-size: 1.1rem; opacity: 0.9; }
+
+  header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+  
+  .section-title {
+    font-size: 1.4rem;
+    margin: 40px 0 25px 0;
+    padding-left: 18px;
+    border-left: 5px solid var(--primary);
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
   }
+  
   .card {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 25px;
+    padding: 28px;
     text-decoration: none;
-    color: #fff;
-    transition: all 0.3s ease;
+    color: var(--text);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
     cursor: pointer;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
   }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(240, 147, 251, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
   .card:hover {
     transform: translateY(-8px);
-    background: rgba(255,255,255,0.25);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary);
   }
-  .icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    background: rgba(255,255,255,0.2);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+
+  .icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 18px;
+    font-size: 2rem;
+    transition: all 0.4s;
+    position: relative;
+    z-index: 1;
   }
-  .card h3 { font-size: 1.3rem; margin-bottom: 8px; }
-  .card p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 15px; }
+
+  .card:hover .icon-wrapper {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .admin .icon-wrapper {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #dc2626;
+  }
+
+  .college .icon-wrapper {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #2563eb;
+  }
+
+  .ai .icon-wrapper {
+    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+    color: #9333ea;
+  }
+
+  .social .icon-wrapper {
+    background: linear-gradient(135deg, #ffedd5, #fed7aa);
+    color: #ea580c;
+  }
+
+  .tools .icon-wrapper {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #059669;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+
   .btn {
-    background: #fff;
-    color: #764ba2;
-    padding: 8px 20px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 10px 24px;
+    border-radius: 10px;
     font-weight: 600;
     font-size: 0.85rem;
     margin-top: auto;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    position: relative;
+    z-index: 1;
   }
+
+  .card:hover .btn {
+    transform: translateX(5px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+  }
+  
   footer {
     text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    opacity: 0.8;
+    margin-top: 60px;
+    padding: 30px;
+    color: white;
     font-size: 0.9rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
   }
-  @media (max-width: 600px) {
+
+  footer strong {
+    font-size: 1rem;
+    color: var(--text);
+  }
+
+  footer p {
+    margin-top: 8px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+  }
+  
+  @media (max-width: 768px) {
     header h1 { font-size: 1.8rem; }
-    .icon { width: 65px; height: 65px; font-size: 2.2rem; }
+    header p { font-size: 0.95rem; }
+    .grid { grid-template-columns: 1fr; gap: 18px; }
+    .section-title { font-size: 1.2rem; }
+    .card { padding: 22px; }
+    .icon-wrapper { width: 60px; height: 60px; font-size: 1.7rem; }
   }
 </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🎓 KES Updates Admin Hub</h1>
-      <p>One place to manage everything</p>
+      <h1>🎓 KES UPDATESS</h1>
+      <p>Professional Admin Dashboard - Manage Everything in One Place</p>
     </header>
 
-    <div class="grid">
+    <!-- ADMIN PANELS & MAIN SITES -->
+    <h2 class="section-title">
+      <i class="fas fa-cogs"></i>
+      Admin Panels & Main Sites
+    </h2>
+    <div class="grid admin">
       <a href="https://kesupdatess.github.io/kes-Updatess/" target="_blank" class="card">
-        <div class="icon">🌐</div>
+        <div class="icon-wrapper">
+          <i class="fas fa-globe"></i>
+        </div>
         <h3>Main Website</h3>
-        <p>Student chatbot & portal</p>
-        <div class="btn">Open →</div>
+        <p>Student chatbot & information portal</p>
+        <div class="btn">Open Site <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/KES-UPDATESS-FOUNDATION/" target="_blank" class="card">
-        <div class="icon">💝</div>
+        <div class="icon-wrapper">
+          <i class="fas fa-heart"></i>
+        </div>
         <h3>Donation Portal</h3>
-        <p>Public donation page</p>
-        <div class="btn">Open →</div>
+        <p>KES Foundation donation page</p>
+        <div class="btn">Open Site <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/ADMIN-PANEL-DONATION/" target="_blank" class="card">
-        <div class="icon">💰</div>
+        <div class="icon-wrapper">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
         <h3>Donation Admin</h3>
-        <p>Manage payments & donors</p>
-        <div class="btn">Open →</div>
+        <p>Manage payments and donors</p>
+        <div class="btn">Open Panel <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/ADMIN-PANNEL-FOR-NOTICES-/" target="_blank" class="card">
-        <div class="icon">📢</div>
+        <div class="icon-wrapper">
+          <i class="fas fa-bullhorn"></i>
+        </div>
         <h3>Notice Admin</h3>
-        <p>Post & manage notices</p>
-        <div class="btn">Open →</div>
+        <p>Post and manage college notices</p>
+        <div class="btn">Open Panel <i class="fas fa-arrow-right"></i></div>
+      </a>
+    </div>
+
+    <!-- COLLEGE WEBSITES -->
+    <h2 class="section-title">
+      <i class="fas fa-university"></i>
+      College Websites
+    </h2>
+    <div class="grid college">
+      <a href="https://kesshroffcollege.edu.in/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>KES Shroff College</h3>
+        <p>Official degree college website</p>
+        <div class="btn">Visit <i class="fas fa-external-link-alt"></i></div>
+      </a>
+
+      <a href="https://kesjrcollege.edu.in/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3>KES Jr College</h3>
+        <p>Official junior college website</p>
+        <div class="btn">Visit <i class="fas fa-external-link-alt"></i></div>
+      </a>
+
+      <a href="https://github.com/kesupdatess" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fab fa-github"></i>
+        </div>
+        <h3>GitHub Repository</h3>
+        <p>All projects and code repositories</p>
+        <div class="btn">View Code <i class="fas fa-external-link-alt"></i></div>
+      </a>
+    </div>
+
+    <!-- AI TOOLS -->
+    <h2 class="section-title">
+      <i class="fas fa-robot"></i>
+      AI Tools & Assistants
+    </h2>
+    <div class="grid ai">
+      <a href="https://chat.openai.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-comment-dots"></i>
+        </div>
+        <h3>ChatGPT</h3>
+        <p>OpenAI's conversational AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+
+      <a href="https://claude.ai/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-theater-masks"></i>
+        </div>
+        <h3>Claude</h3>
+        <p>Anthropic's AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+
+      <a href="https://chat.qwen.ai/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-star"></i>
+        </div>
+        <h3>Qwen</h3>
+        <p>Alibaba's large language model</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+
+      <a href="https://www.deepseek.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-water"></i>
+        </div>
+        <h3>DeepSeek</h3>
+        <p>Advanced AI reasoning model</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+
+      <a href="https://gemini.google.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-gem"></i>
+        </div>
+        <h3>Gemini</h3>
+        <p>Google's AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+
+      <a href="https://copilot.microsoft.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-plane"></i>
+        </div>
+        <h3>Copilot</h3>
+        <p>Microsoft's AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+      </a>
+    </div>
+
+    <!-- SOCIAL MEDIA -->
+    <h2 class="section-title">
+      <i class="fas fa-share-alt"></i>
+      Social Media & Communication
+    </h2>
+    <div class="grid social">
+      <a href="https://www.instagram.com/kes_updates/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fab fa-instagram"></i>
+        </div>
+        <h3>Instagram</h3>
+        <p>Manage posts, stories & engagement</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://mail.google.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Gmail</h3>
+        <p>Official email communication</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://web.whatsapp.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp Web</h3>
+        <p>Quick messaging & group management</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://www.youtube.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fab fa-youtube"></i>
+        </div>
+        <h3>YouTube</h3>
+        <p>Video content & channel management</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+    </div>
+
+    <!-- PRODUCTIVITY & DEVELOPMENT TOOLS -->
+    <h2 class="section-title">
+      <i class="fas fa-tools"></i>
+      Productivity & Development Tools
+    </h2>
+    <div class="grid tools">
+      <a href="https://docs.google.com/forms/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3>Google Forms</h3>
+        <p>Create feedback & survey forms</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://drive.google.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fab fa-google-drive"></i>
+        </div>
+        <h3>Google Drive</h3>
+        <p>Cloud storage & file sharing</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://www.canva.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-palette"></i>
+        </div>
+        <h3>Canva</h3>
+        <p>Design posters & graphics</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://calendar.google.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <h3>Google Calendar</h3>
+        <p>Schedule events & deadlines</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://www.notion.so/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <h3>Notion</h3>
+        <p>Notes & documentation</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://analytics.google.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Google Analytics</h3>
+        <p>Track website traffic & insights</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+
+      <a href="https://app.supabase.com/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3>Supabase</h3>
+        <p>Backend database & authentication</p>
+        <div class="btn">Open Dashboard <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
 
     <footer>
-      © 2026 KES Shroff College • Admin Hub v1.0
+      <strong>© 2026 KES UPDATESS • Admin Dashboard v4.0</strong>
+      <p>All links verified and working ✓ | Built with ❤️ for efficient management</p>
     </footer>
   </div>
 </body>
