@@ -10,25 +10,33 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
   :root {
-    --primary: #667eea;
-    --primary-dark: #764ba2;
-    --accent: #f093fb;
-    --bg: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --text: #1e293b;
-    --text-light: #64748b;
-    --border: rgba(255, 255, 255, 0.2);
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.15);
-    --shadow-xl: 0 20px 40px -5px rgb(0 0 0 / 0.2);
+    --bg: #ffffff;
+    --card-bg: #ffffff;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --text-tertiary: #aeaeb2;
+    --border: #e5e5e7;
+    --border-light: #f2f2f7;
+    --accent: #0071e3;
+    --accent-hover: #0077ed;
+    --accent-light: #e3f2fd;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --shadow-xl: 0 12px 40px rgba(0,0,0,0.15);
+    --radius: 20px;
+    --radius-sm: 14px;
+    --radius-xs: 10px;
   }
 
   body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f7;
     min-height: 100vh;
     padding: 20px;
-    color: var(--text);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .container {
@@ -38,11 +46,12 @@
   
   header {
     text-align: center;
-    padding: 50px 30px;
-    margin-bottom: 50px;
+    padding: 48px 32px;
+    margin-bottom: 40px;
     background: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: var(--shadow-xl);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
     position: relative;
     overflow: hidden;
   }
@@ -53,234 +62,401 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary-dark));
+    height: 4px;
+    background: linear-gradient(90deg, #0071e3, #34c759, #ff9500, #af52de);
   }
 
   header h1 {
     font-size: 2.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    letter-spacing: -1px;
   }
 
   header p {
     font-size: 1.1rem;
-    color: var(--text-light);
+    color: var(--text-secondary);
     font-weight: 400;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
   }
   
   .section-title {
-    font-size: 1.4rem;
-    margin: 40px 0 25px 0;
-    padding-left: 18px;
-    border-left: 5px solid var(--primary);
-    color: white;
+    font-size: 1.35rem;
+    margin: 40px 0 20px 0;
+    color: var(--text-primary);
     font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 0 4px;
+  }
+
+  .section-title i {
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  .section-count {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: auto;
   }
   
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
   
   .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: var(--radius);
     padding: 28px;
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-primary);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     cursor: pointer;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
   }
 
-  .card::before {
+  .card::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(240, 147, 251, 0.05));
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,113,227,0.02), rgba(52,199,89,0.02));
     opacity: 0;
     transition: opacity 0.4s;
   }
 
-  .card:hover::before {
+  .card:hover::after {
     opacity: 1;
   }
 
   .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: var(--shadow-xl);
-    border-color: var(--primary);
+    border-color: #d2d2d7;
+  }
+
+  .card:active {
+    transform: translateY(-3px);
   }
 
   .icon-wrapper {
-    width: 70px;
-    height: 70px;
-    border-radius: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 18px;
-    font-size: 2rem;
-    transition: all 0.4s;
+    font-size: 1.6rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f5f5f7;
     position: relative;
     z-index: 1;
   }
 
   .card:hover .icon-wrapper {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.08) rotate(5deg);
   }
 
   .admin .icon-wrapper {
-    background: linear-gradient(135deg, #fee2e2, #fecaca);
-    color: #dc2626;
+    color: #ff3b30;
+    background: linear-gradient(135deg, #fff5f5, #ffe5e5);
   }
 
   .college .icon-wrapper {
-    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-    color: #2563eb;
+    color: #007aff;
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
   }
 
   .ai .icon-wrapper {
-    background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
-    color: #9333ea;
+    color: #af52de;
+    background: linear-gradient(135deg, #faf5ff, #f3e8ff);
   }
 
   .social .icon-wrapper {
-    background: linear-gradient(135deg, #ffedd5, #fed7aa);
-    color: #ea580c;
+    color: #ff9500;
+    background: linear-gradient(135deg, #fffaf0, #fff4e6);
   }
 
   .tools .icon-wrapper {
-    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    color: #059669;
+    color: #34c759;
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  }
+
+  .testing .icon-wrapper {
+    color: #ff6b6b;
+    background: linear-gradient(135deg, #fff0f0, #ffe0e0);
   }
 
   .card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--text);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
     font-weight: 700;
-    position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
 
   .badge {
     font-size: 0.65rem;
-    padding: 3px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
   .badge-new {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #065f46;
   }
 
   .badge-popular {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: white;
+    background: linear-gradient(135deg, #fed7aa, #fdba74);
+    color: #9a3412;
+  }
+
+  .badge-testing {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #991b1b;
   }
 
   .card p {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 18px;
+    flex-grow: 1;
     position: relative;
     z-index: 1;
   }
 
   .btn {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: var(--accent);
     color: white;
-    padding: 10px 24px;
-    border-radius: 10px;
+    padding: 12px 24px;
+    border-radius: var(--radius-xs);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     margin-top: auto;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-    position: relative;
-    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     gap: 8px;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 8px rgba(0,113,227,0.2);
   }
 
   .card:hover .btn {
-    transform: translateX(5px);
-    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    background: var(--accent-hover);
+    box-shadow: 0 4px 12px rgba(0,113,227,0.3);
+  }
+
+  .btn i {
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+  }
+
+  .card:hover .btn i {
+    transform: translateX(4px);
   }
   
   footer {
     text-align: center;
     margin-top: 60px;
-    padding: 30px;
-    color: white;
-    font-size: 0.9rem;
+    padding: 32px;
     background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
   }
 
   footer strong {
     font-size: 1rem;
-    color: var(--text);
+    color: var(--text-primary);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
   }
 
   footer p {
-    margin-top: 8px;
-    color: var(--text-light);
+    color: var(--text-secondary);
     font-size: 0.85rem;
   }
-  
-  @media (max-width: 768px) {
-    header h1 { font-size: 1.8rem; }
-    header p { font-size: 0.95rem; }
-    .grid { grid-template-columns: 1fr; gap: 18px; }
-    .section-title { font-size: 1.2rem; }
-    .card { padding: 22px; }
-    .icon-wrapper { width: 60px; height: 60px; font-size: 1.7rem; }
+
+  /* Mobile optimizations */
+  @media (max-width: 639px) {
+    body {
+      padding: 14px;
+    }
+
+    header {
+      padding: 36px 24px;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      gap: 24px;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      margin: 32px 0 16px 0;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .icon-wrapper {
+      width: 52px;
+      height: 52px;
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      padding: 11px 20px;
+      font-size: 0.85rem;
+    }
+  }
+
+  /* Touch-friendly improvements */
+  @media (hover: none) and (pointer: coarse) {
+    .card:hover {
+      transform: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card:active {
+      transform: scale(0.98);
+      background: #fafafa;
+    }
+
+    .card:active .btn {
+      background: var(--accent-hover);
+    }
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
   }
 </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🎓 KES UPDATESS</h1>
-      <p>Professional Admin Dashboard - Manage Everything in One Place</p>
+      <h1>KES UPDATESS</h1>
+      <p>Admin Dashboard</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">25</div>
+          <div class="stat-label">Total Links</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Verified</div>
+        </div>
+      </div>
     </header>
 
     <!-- ADMIN PANELS & MAIN SITES -->
     <h2 class="section-title">
-      <i class="fas fa-cogs"></i>
-      Admin Panels & Main Sites
+      <i class="fas fa-cog"></i>
+      Admin Panels
+      <span class="section-count">4</span>
     </h2>
     <div class="grid admin">
       <a href="https://kesupdatess.github.io/kes-Updatess/" target="_blank" class="card">
@@ -288,8 +464,8 @@
           <i class="fas fa-globe"></i>
         </div>
         <h3>Main Website</h3>
-        <p>Student chatbot & information portal</p>
-        <div class="btn">Open Site <i class="fas fa-arrow-right"></i></div>
+        <p>Student chatbot & portal</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/KES-UPDATESS-FOUNDATION/" target="_blank" class="card">
@@ -297,8 +473,8 @@
           <i class="fas fa-heart"></i>
         </div>
         <h3>Donation Portal</h3>
-        <p>KES Foundation donation page</p>
-        <div class="btn">Open Site <i class="fas fa-arrow-right"></i></div>
+        <p>Foundation donation page</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/ADMIN-PANEL-DONATION/" target="_blank" class="card">
@@ -306,8 +482,8 @@
           <i class="fas fa-money-bill-wave"></i>
         </div>
         <h3>Donation Admin</h3>
-        <p>Manage payments and donors</p>
-        <div class="btn">Open Panel <i class="fas fa-arrow-right"></i></div>
+        <p>Manage payments & donors</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kesupdatess.github.io/ADMIN-PANNEL-FOR-NOTICES-/" target="_blank" class="card">
@@ -315,8 +491,8 @@
           <i class="fas fa-bullhorn"></i>
         </div>
         <h3>Notice Admin</h3>
-        <p>Post and manage college notices</p>
-        <div class="btn">Open Panel <i class="fas fa-arrow-right"></i></div>
+        <p>Post & manage notices</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
 
@@ -324,6 +500,7 @@
     <h2 class="section-title">
       <i class="fas fa-university"></i>
       College Websites
+      <span class="section-count">3</span>
     </h2>
     <div class="grid college">
       <a href="https://kesshroffcollege.edu.in/" target="_blank" class="card">
@@ -331,7 +508,7 @@
           <i class="fas fa-graduation-cap"></i>
         </div>
         <h3>KES Shroff College</h3>
-        <p>Official degree college website</p>
+        <p>Official degree college</p>
         <div class="btn">Visit <i class="fas fa-external-link-alt"></i></div>
       </a>
 
@@ -340,7 +517,7 @@
           <i class="fas fa-book"></i>
         </div>
         <h3>KES Jr College</h3>
-        <p>Official junior college website</p>
+        <p>Official junior college</p>
         <div class="btn">Visit <i class="fas fa-external-link-alt"></i></div>
       </a>
 
@@ -348,16 +525,34 @@
         <div class="icon-wrapper">
           <i class="fab fa-github"></i>
         </div>
-        <h3>GitHub Repository</h3>
-        <p>All projects and code repositories</p>
-        <div class="btn">View Code <i class="fas fa-external-link-alt"></i></div>
+        <h3>GitHub</h3>
+        <p>Code repositories</p>
+        <div class="btn">View <i class="fas fa-external-link-alt"></i></div>
       </a>
     </div>
 
-    <!-- AI TOOLS - ENHANCED -->
+    <!-- TESTING & REPLICA SITES -->
+    <h2 class="section-title">
+      <i class="fas fa-flask"></i>
+      Testing & Replica Sites
+      <span class="section-count">1</span>
+    </h2>
+    <div class="grid testing">
+      <a href="https://kesupdatess.github.io/JUNIORCOLLEGE-CUTOFF/" target="_blank" class="card">
+        <div class="icon-wrapper">
+          <i class="fas fa-vial"></i>
+        </div>
+        <h3>Junior College Cutoff <span class="badge badge-testing">Testing</span></h3>
+        <p>Replica site for testing before going live</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
+      </a>
+    </div>
+
+    <!-- AI TOOLS -->
     <h2 class="section-title">
       <i class="fas fa-robot"></i>
-      AI Tools & Assistants
+      AI Tools
+      <span class="section-count">6</span>
     </h2>
     <div class="grid ai">
       <a href="https://chat.openai.com/" target="_blank" class="card">
@@ -365,17 +560,17 @@
           <i class="fas fa-comment-dots"></i>
         </div>
         <h3>ChatGPT <span class="badge badge-popular">Popular</span></h3>
-        <p>OpenAI's conversational AI assistant</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <p>OpenAI's AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://claude.ai/" target="_blank" class="card">
         <div class="icon-wrapper">
-          <i class="fas fa-theater-masks"></i>
+          <i class="fas fa-brain"></i>
         </div>
         <h3>Claude <span class="badge badge-popular">Popular</span></h3>
         <p>Anthropic's AI assistant</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://chat.z.ai/" target="_blank" class="card">
@@ -383,8 +578,8 @@
           <i class="fas fa-bolt"></i>
         </div>
         <h3>Z AI <span class="badge badge-new">New</span></h3>
-        <p>Advanced AI chat interface</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <p>Advanced AI chat</p>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://kimi.moonshot.cn/" target="_blank" class="card">
@@ -392,8 +587,8 @@
           <i class="fas fa-moon"></i>
         </div>
         <h3>Kimi <span class="badge badge-new">New</span></h3>
-        <p>Moonshot AI's intelligent assistant</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <p>Moonshot AI assistant</p>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://gemini.google.com/" target="_blank" class="card">
@@ -402,23 +597,24 @@
         </div>
         <h3>Gemini</h3>
         <p>Google's AI assistant</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
 
       <a href="https://copilot.microsoft.com/" target="_blank" class="card">
         <div class="icon-wrapper">
-          <i class="fas fa-plane"></i>
+          <i class="fas fa-microchip"></i>
         </div>
         <h3>Copilot</h3>
         <p>Microsoft's AI assistant</p>
-        <div class="btn">Launch <i class="fas fa-rocket"></i></div>
+        <div class="btn">Launch <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
 
     <!-- SOCIAL MEDIA -->
     <h2 class="section-title">
       <i class="fas fa-share-alt"></i>
-      Social Media & Communication
+      Social Media
+      <span class="section-count">4</span>
     </h2>
     <div class="grid social">
       <a href="https://www.instagram.com/kes_updates/" target="_blank" class="card">
@@ -426,7 +622,7 @@
           <i class="fab fa-instagram"></i>
         </div>
         <h3>Instagram</h3>
-        <p>Manage posts, stories & engagement</p>
+        <p>Posts & stories</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -435,7 +631,7 @@
           <i class="fas fa-envelope"></i>
         </div>
         <h3>Gmail</h3>
-        <p>Official email communication</p>
+        <p>Email communication</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -443,8 +639,8 @@
         <div class="icon-wrapper">
           <i class="fab fa-whatsapp"></i>
         </div>
-        <h3>WhatsApp Web</h3>
-        <p>Quick messaging & group management</p>
+        <h3>WhatsApp</h3>
+        <p>Messaging & groups</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -453,15 +649,16 @@
           <i class="fab fa-youtube"></i>
         </div>
         <h3>YouTube</h3>
-        <p>Video content & channel management</p>
+        <p>Video content</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
 
-    <!-- PRODUCTIVITY & DEVELOPMENT TOOLS -->
+    <!-- PRODUCTIVITY TOOLS -->
     <h2 class="section-title">
       <i class="fas fa-tools"></i>
-      Productivity & Development Tools
+      Tools
+      <span class="section-count">7</span>
     </h2>
     <div class="grid tools">
       <a href="https://docs.google.com/forms/" target="_blank" class="card">
@@ -469,7 +666,7 @@
           <i class="fas fa-file-alt"></i>
         </div>
         <h3>Google Forms</h3>
-        <p>Create feedback & survey forms</p>
+        <p>Feedback & surveys</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -478,7 +675,7 @@
           <i class="fab fa-google-drive"></i>
         </div>
         <h3>Google Drive</h3>
-        <p>Cloud storage & file sharing</p>
+        <p>Cloud storage</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -487,7 +684,7 @@
           <i class="fas fa-palette"></i>
         </div>
         <h3>Canva</h3>
-        <p>Design posters & graphics</p>
+        <p>Design graphics</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -495,8 +692,8 @@
         <div class="icon-wrapper">
           <i class="fas fa-calendar-alt"></i>
         </div>
-        <h3>Google Calendar</h3>
-        <p>Schedule events & deadlines</p>
+        <h3>Calendar</h3>
+        <p>Schedule events</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -505,7 +702,7 @@
           <i class="fas fa-book-open"></i>
         </div>
         <h3>Notion</h3>
-        <p>Notes & documentation</p>
+        <p>Notes & docs</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -513,8 +710,8 @@
         <div class="icon-wrapper">
           <i class="fas fa-chart-line"></i>
         </div>
-        <h3>Google Analytics</h3>
-        <p>Track website traffic & insights</p>
+        <h3>Analytics</h3>
+        <p>Track traffic</p>
         <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
 
@@ -523,14 +720,14 @@
           <i class="fas fa-database"></i>
         </div>
         <h3>Supabase</h3>
-        <p>Backend database & authentication</p>
-        <div class="btn">Open Dashboard <i class="fas fa-arrow-right"></i></div>
+        <p>Database & auth</p>
+        <div class="btn">Open <i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
 
     <footer>
-      <strong>© 2026 KES UPDATESS • Admin Dashboard v5.0</strong>
-      <p>All links verified and working ✓ | Built with ❤️ for efficient management</p>
+      <strong>© 2026 KES UPDATESS</strong>
+      <p>Admin Dashboard v7.0 • World-Class UI/UX • All links verified ✓</p>
     </footer>
   </div>
 </body>
